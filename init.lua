@@ -323,6 +323,15 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- NeoGit
+local neogit = require('neogit')
+vim.keymap.set('n', '<leader>gg', function()
+  neogit.open({ kind = "split" })
+end, { desc = "[G]it neo[G]it" })
+vim.keymap.set('n', '<leader>gc', function()
+  neogit.open({ "commit" })
+end, { desc = "[G]it [C]ommit" })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
