@@ -160,27 +160,6 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-  -- 🍨 Soothing pastel theme for (Neo)vim
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'catppuccin-macchiato'
-    end,
-    opts = {
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        telescope = {
-          enabled = true
-        },
-        which_key = true
-      }
-    }
-  },
 
   {
     -- Set lualine as statusline
@@ -238,16 +217,6 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
-      "ibhagwan/fzf-lua",              -- optional
-    },
-    config = true
-  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -323,14 +292,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- NeoGit
-local neogit = require('neogit')
-vim.keymap.set('n', '<leader>gg', function()
-  neogit.open({ kind = "split" })
-end, { desc = "[G]it neo[G]it" })
-vim.keymap.set('n', '<leader>gc', function()
-  neogit.open({ "commit" })
-end, { desc = "[G]it [C]ommit" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
