@@ -112,7 +112,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -160,6 +160,27 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
+  -- 🍨 Soothing pastel theme for (Neo)vim
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'catppuccin-macchiato'
+    end,
+    opts = {
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        telescope = {
+          enabled = true
+        },
+        which_key = true
+      }
+    }
+  },
 
   {
     -- Set lualine as statusline
@@ -168,7 +189,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'catppuccin-macchiato',
         component_separators = '|',
         section_separators = '',
       },
@@ -241,6 +262,8 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+-- Make line numbers relative
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -345,7 +368,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
